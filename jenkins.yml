@@ -1,18 +1,37 @@
+---
 pipeline:
   agent:
     any
+  tools:
+    - maven: '3.9.1'
   stages:
-    - stage: "Git checkout scm"
+    - stage: 'maven -version'
+      steps:
+        - sh: 'mvn -version'
+    - stage: 'Git checkout scm'
       steps:
         - git:
-            branch: main
-            url: 'https://github.com/SrivenkateswaraReddy/SpringBoot-Demo.git'
-    - stage: "Build"
+            branch: 'main'
+            url: 'https://github.com/SrivenkateswaraReddy/mycoolapp.git'
+    - stage: 'Build'
       steps:
-        - sh "mvn clean install"
-    - stage: "Test"
+        - sh: 'mvn clean install'
+    - stage: 'Test'
       steps:
-        - sh "mvn test"
-    - stage: "Deploy"
+        - sh: 'mvn test'
+    - stage: 'Deploy'
       steps:
-        - sh "mvn deploy"
+        - input:
+            message: 'Do you want to deploy?'
+            parameters:
+              - booleanParam:
+                  defaultValue: false
+                  description: 'Deploy the application?'
+                  name: 'deploy'
+        - script:
+            scriptBlock: |
+              if (params.deploy == true) {
+                sh 'mvn deploy'
+              } else {
+                echo 'Skipping deployment.'
+              }
