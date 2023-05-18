@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Load YAML Pipeline') {
+            steps {
+                script {
+                    def pipelineScript = readFile('pipeline.yaml')
+                    def pipeline = readYaml(text: pipelineScript)
+                    load pipeline
+                }
+            }
+        }
+    }
+}
