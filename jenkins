@@ -5,7 +5,7 @@ pipeline {
         stage('Load YAML Pipeline') {
             steps {
                 script {
-                    def pipelineScript = readFile('pipeline.yaml')
+                    def pipelineScript = readFile('jenkins.yaml')
                     def pipeline = readYaml(text: pipelineScript)
                     load pipeline
                 }
