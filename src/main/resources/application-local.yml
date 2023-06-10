@@ -23,7 +23,7 @@ player:
 # Setting Spring Intalization to LAZY by default
 spring:
   profile:
-    active: dev
+    active: local
   datasource:
     url: jdbc:postgresql://localhost:5432/Spring
     username: postgres
