@@ -22,9 +22,8 @@ player:
 # JDBC Settings
 # Setting Spring Intalization to LAZY by default
 spring:
-  #  main:
-  #    lazy-initialization: true
-
+  profile:
+    active: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/Spring
     username: postgres
@@ -36,9 +35,17 @@ spring:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
       format_sql: true
-      ddl-auto=update:
+      ddl-auto: update
     show-sql: true
-
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  security:
+    user:
+      name: root
+      password: root
+  # main:
+  #lazy-initialization: true
 
 # Server configuration and configuration
 server:

@@ -1,5 +1,6 @@
 package com.springboot.demo.mycoolapp.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +21,7 @@ public class HomePage {
 //    }
 
     // expose a new endpoint for workout
+
 
     @GetMapping("/workout")
     public String getDailyWorkout() {
