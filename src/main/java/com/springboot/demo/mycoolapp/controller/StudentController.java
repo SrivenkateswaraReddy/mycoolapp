@@ -15,25 +15,26 @@ import java.util.List;
 @RequestMapping(value = "/student")
 public class StudentController {
 
-    Logger logger = LoggerFactory.getLogger(StudentController.class);
+    Logger log = LoggerFactory.getLogger(StudentController.class);
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
+    @GetMapping(value = "/hello")
     public String sayHello() {
-        logger.info("Hello World!");
+        log.info("Hello World!");
         return "Hello World!";
     }
 
     @PostMapping(value = "/student")
     public ResponseEntity<Void> createStudent(@RequestBody Student student) {
         studentService.saveStudent(student);
+        log.info("Student created successfully {}",student.getId());
         return ResponseEntity.status(HttpStatus.CREATED).build();
-
     }
 
     @GetMapping(value = "/{id}")
@@ -43,6 +44,7 @@ public class StudentController {
         if (student == null) {
             return ResponseEntity.notFound().build();
         }
+        log.info("getting the student by id {}",id);
         return ResponseEntity.ok(student);
         //return ResponseEntity.status(HttpStatus.OK).body(studentService);
         //return ResponseEntity.status(HttpStatus.OK).body(student);
@@ -56,6 +58,7 @@ public class StudentController {
         if (students == null) {
             return ResponseEntity.notFound().build();
         }
+        log.info("getting list of all students from the database");
         return ResponseEntity.ok(students);
         //return ResponseEntity.status(HttpStatus.OK).body(students);
         //return ResponseEntity.status(HttpStatus.OK).body(studentService.getAllStudents());
@@ -65,6 +68,7 @@ public class StudentController {
     @DeleteMapping(value = "/deleteStudent/{id}")
     public ResponseEntity<Void> DeleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
+        log.info("Student with id {} removed from database",id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

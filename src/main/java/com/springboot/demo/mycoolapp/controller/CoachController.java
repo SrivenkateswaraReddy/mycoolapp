@@ -17,9 +17,9 @@ public class CoachController {
     Logger log = LoggerFactory.getLogger(CoachController.class);
 
 
-    private Coach myCoach;
+    private final Coach myCoach;
 
-    private Coach myCoach2;
+    private final Coach myCoach2;
 
     private Coach myCoach3;
 
