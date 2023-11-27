@@ -44,6 +44,9 @@ spring:
     user:
       name: root
       password: root
+  sql:
+    init:
+      continue-on-error: true
   # main:
   #lazy-initialization: true
 
