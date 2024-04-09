@@ -44,7 +44,7 @@ jobs:
       run: echo ${{ secrets.DOCKER_HUB_SECRET_KEY}} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
 
     - name: Image Push to Docker-Hub
-      run: docker push -t ${{ secrets.DOCKER_HUB_USERNAME }}/mycoolapp:latest
+      run: docker push  ${{ secrets.DOCKER_HUB_USERNAME }}/mycoolapp:latest
 
 
 
