@@ -37,6 +37,9 @@ jobs:
     - name: Run Tests with maven
       run:  mvn test
 
+    - name: Docker-login
+      run: echo ${{ secrets.DOCKER_HUB_SECRET_KEY}} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME}} --password-stdin
+
 
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
