@@ -23,15 +23,19 @@ player:
 # Setting Spring Intalization to LAZY by default
 spring:
   profile:
-    active: local
-    default: local
+    active: dev
   datasource:
-    url: jdbc:postgresql://localhost:5432/Spring
-    username: postgres
-    password: root
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
     hikari:
       pool-name: MyHikariCPool
+    continue-on-error: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.PostgreSQLDialect
