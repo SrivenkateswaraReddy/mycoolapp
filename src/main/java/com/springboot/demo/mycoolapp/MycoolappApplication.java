@@ -2,13 +2,13 @@ package com.springboot.demo.mycoolapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
+@EnableWebMvc
 public class MycoolappApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MycoolappApplication.class, args);
-
+	 SpringApplication.run(MycoolappApplication.class, args);
 	}
-
 }

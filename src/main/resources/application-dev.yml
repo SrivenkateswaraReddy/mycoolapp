@@ -14,11 +14,6 @@ management:
       name: MY INFO APP
       description: A Spring Boot application
       version: '1.0'
-# defining @value properties
-coach:
-  name: Linux Profile
-player:
-  name: linus Torvalrds
 # JDBC Settings
 # Setting Spring Intalization to LAZY by default
 spring:
@@ -45,10 +40,6 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  security:
-    user:
-      name: root
-      password: root
   sql:
     init:
       continue-on-error: true
