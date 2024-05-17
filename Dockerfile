@@ -10,4 +10,4 @@ ARG JAR_FILE
 
 COPY /target/mycoolapp-0.0.1-SNAPSHOT.jar mycoolapp.jar
 
-ENTRYPOINT ["java","-Dspring.profiles.active=dev","-jar","/mycoolapp.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=github","-jar","/mycoolapp.jar"]

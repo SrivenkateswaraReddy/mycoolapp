@@ -1,0 +1,59 @@
+---
+#managining actuator endpoints both include and exclude also base-path settings
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      exposure:
+        include: beans, caches, conditions, env, flyway, health, httptrace , integrationgraph, loggers, liquibase, metrics, mappings, scheduletasks, sessions, shutdown, threaddump, info, auditevents, configprops
+  # info endpoint
+  info:
+    env:
+      enabled: true
+    app:
+      name: MY INFO APP
+      description: A Spring Boot application
+      version: '1.0'
+# JDBC Settings
+# Setting Spring Intalization to LAZY by default
+spring:
+  profiles:
+    active: github
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mycooldb
+    username: exampleuser
+    password: examplepass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      pool-name: MyHikariCPool
+    continue-on-error: true
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      format_sql: true
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  sql:
+    init:
+      continue-on-error: true
+
+# Server configuration and configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /myapp
+  session:
+    timeout: 5m
+# Logging level settings
+logging:
+  level:
+    org.springframework: INFO
+    hibernate: TRACE
+    com.springboot.demo.mycoolapp: INFO
+  file: coolapp.log
+  pattern:
+    console: '%clr(%d{yy-MM-dd E HH:mm:ss.SSS}){blue} %clr(%-5p) %clr(${PID}){faint} %clr(---){faint} %clr([%8.15t]){cyan} %clr(%-40.40logger{0}){blue} %clr(:){red} %clr(%m){faint}%n'  # main:
+  #lazy-initialization: true#        exclude: auditevents, configprops
